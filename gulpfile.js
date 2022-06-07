@@ -1,5 +1,5 @@
 
-// Названия папок -+
+// Названия папок
 let project_folder = 'dist';
 let source_folder = 'src';
 
