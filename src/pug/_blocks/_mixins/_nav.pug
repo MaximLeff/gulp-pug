@@ -1,0 +1,44 @@
+- var navItems = [{'Home': 'index.html'},{'Page_1': 'page_1.html'}]
+
+mixin nav(activePage='Home', items=navItems)
+	ul
+		each item in items
+			li
+				each href, value in item
+					a(
+						href= href 
+						class=(value === activePage ? 'active' : ''))= value
+
+mixin navSubMenu
+	ul.menu_list
+		li
+			a(href="#") item_1
+			ul
+				li
+					a(href="#") sub_item_1
+				li
+					a(href="#") sub_item_2
+					ul
+						li
+							a(href="#") sub_2_item_1
+						li
+							a(href="#") sub_2_item_2
+							ul
+								li
+									a(href="#") sub_3_item_1
+								li
+									a(href="#") sub_3_item_2
+								li
+									a(href="#") sub_3_item_3
+						li
+							a(href="#") sub_2_item_3
+				li
+					a(href="#") sub_item_3
+		li
+			a(href="#") item_2
+		li
+			a(href="#") item_3
+
+mixin navbar
+	nav
+		block
