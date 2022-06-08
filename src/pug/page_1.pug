@@ -1,18 +1,24 @@
 //- include _имя_папки/_имя_страницы-имя_секции
-
-//- layout файл подключения модулей
 include _blocks/_all_blocks
+doctype html
+html(lang="en")
+	+head
+	body
+		+header
+			+navbar
+				+nav('Page_1')
+				//- +navSubMenu
+		main.wrapper.page_1
+			//- секции страницы -------------
+			.container
+				h1 Page 1
+				//- include _index/_index-section_1
+				//- include _index/_index-section_2
+				//- include _index/_index-section_3
+				//- include _index/_index-section_4
+				//- include _index/_index-section_5
+				//- include _index/_index-section_6
+				//- -----------------------------
 
-//- header
-+header
-	+navbar
-		+nav('Page_1')
-
-.wrapper.page_1
-	//- секции страницы -------------
-	.container
-		h1 Page 1
-	//- -----------------------------
-
-//- footer
-+footer
+		//- footer
+		+footer

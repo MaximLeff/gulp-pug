@@ -1,25 +1,24 @@
 //- include _имя_папки/_имя_страницы-имя_секции
-
-//- layout файл подключения модулей
 include _blocks/_all_blocks
+doctype html
+html(lang="en")
+	+head
+	body
+		+header
+			+navbar
+				+nav
+				//- +navSubMenu
+		main.wrapper.home_page
+			//- секции страницы -------------
+			.container
+				h1 Home Page
+				//- include _index/_index-section_1
+				//- include _index/_index-section_2
+				//- include _index/_index-section_3
+				//- include _index/_index-section_4
+				//- include _index/_index-section_5
+				//- include _index/_index-section_6
+				//- -----------------------------
 
-//- header
-+header
-	+navbar
-		+nav
-		//- +navSubMenu
-
-.wrapper.home_page
-	//- секции страницы -------------
-	.container
-		h1 Home Page
-	//- include _index/_index-section_1
-	//- include _index/_index-section_2
-	//- include _index/_index-section_3
-	//- include _index/_index-section_4
-	//- include _index/_index-section_5
-	//- include _index/_index-section_6
-	//- -----------------------------
-
-//- footer
-+footer
+		//- footer
+		+footer
