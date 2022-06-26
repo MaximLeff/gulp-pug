@@ -1,52 +1,19 @@
 .header {
-	nav {
-		ul {
-			display: flex;
-			padding: 20px 0;
+	&__wrapper {
+		display: flex;
+		padding: 10px 0;
+	}
 
-			li {
-				&:not(:last-child) {
-					margin-right: 20px;
-				}
-				
-			}
-		}
+	&__nav {
+		display: flex;
+		flex: 1;
+		justify-content: end;
+		margin-right: 20px;
 
-		a {
-			border-radius: 5px;
-			padding: 10px;
-			font-size: 20px;
-			background: #fff;
-			&.active {
-				font-weight: 700;
+		li {
+			&:not(:last-child) {
+				margin-right: 10px;
 			}
 		}
 	}
-
-	// .menu_list { 
-	// 	display: flex;
-	// 	color: blue;
-	// 	position: relative;
-	// 	ul.active {
-	// 		display: block;
-	// 	}
-	// 	li > ul {
-	// 		display: none;
-	// 		background: #fff;
-	// 		position: absolute;
-	// 		color: red;
-	// 		li > ul {
-	// 			position: absolute;
-	// 			left: 100%;
-	// 			top: 0;
-	// 			color: green;
-	// 			li > ul {
-	// 				position: absolute;
-	// 				left: 100%;
-	// 				top: 0;
-	// 				color: pink;
-	// 			}
-	// 		}
-	// 	}
-	// }
 }

@@ -1,7 +1,7 @@
 - var navItems = [{'Home': 'index.html'},{'Page_1': 'page_1.html'}]
 
 mixin nav(activePage='Home', items=navItems)
-	ul
+	ul.header__nav
 		each item in items
 			li
 				each href, value in item
@@ -39,6 +39,10 @@ mixin navSubMenu
 		li
 			a(href="#") item_3
 
+mixin rightBlockBtn
+	a.btn(href="#") Link
+
 mixin navbar
-	nav
+	nav.header__nav
+		+nav
 		block
