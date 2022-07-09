@@ -46,7 +46,7 @@ const clean_css = require('gulp-clean-css');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify-es').default;
 const imagemin = require('gulp-imagemin');
-// const webp = require('gulp-webp');
+const webp = require('gulp-webp');
 // const webphtml = require('gulp-webp-html');
 const sourcemaps = require('gulp-sourcemaps');
 const newer = require('gulp-newer');
@@ -183,14 +183,14 @@ function cssLibsMove() {
 function images() {
 	return src(path.src.img)
 		.pipe(newer('dist/img/'))
-		// .pipe(
-		// 	imagemin({
-		// 		progressive: true,
-		// 		svgoPlugins: [{ removeViewBox: false }],
-		// 		interlaced: true,
-		// 		optimizationLevel: 0 // 0 to 7
-		// 	})
-		// )
+		.pipe(
+			imagemin({
+				progressive: true,
+				svgoPlugins: [{ removeViewBox: false }],
+				interlaced: true,
+				optimizationLevel: 0 // 0 to 7
+			})
+		)
 		.pipe(dest(path.build.img))
 }
 
