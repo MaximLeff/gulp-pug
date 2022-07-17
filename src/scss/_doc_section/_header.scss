@@ -1,6 +1,7 @@
 .header {
 	&__wrapper {
 		display: flex;
+		align-items: center;
 		padding: 10px 0;
 	}
 
@@ -9,11 +10,57 @@
 		flex: 1;
 		justify-content: end;
 		margin-right: 20px;
+	}
+}
 
-		li {
-			&:not(:last-child) {
-				margin-right: 10px;
+.menu {
+	display: flex;
+
+	&__item {
+		position: relative;
+
+		&:not(:last-child) {
+			margin-right: 10px;
+		}
+
+		&:hover {
+			&::after {
+				transform: rotateX(180deg);
+			}
+
+			.submenu {
+				opacity: 1;
+				visibility: visible;
 			}
 		}
 	}
 }
+
+//* nav width submenu ----------------------------------
+
+.has-submenu {
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	&::after {
+		content: "";
+		display: block;
+		margin-left: 10px;
+		width: 10px;
+		height: 10px;
+		background: green;
+		transition: var(--anim2);
+	}
+}
+
+.submenu {
+	position: absolute;
+	top: 100%;
+	min-width: max-content;
+	opacity: 0;
+	visibility: hidden;
+	transition: var(--anim1);
+}
+
+//*------------------------------------------------------

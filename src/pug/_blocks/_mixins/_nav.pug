@@ -1,48 +1,127 @@
-- var navItems = [{'Home': 'index.html'},{'Page_1': 'page_1.html'}]
+//- menuTypeSubmenu = true | false
+- var menuTypeSubmenu = true
 
-mixin nav(activePage='Home', items=navItems)
-	ul.header__nav
-		each item in items
-			li
-				each href, value in item
-					a(
-						href= href 
-						class=(value === activePage ? 'active' : ''))= value
 
-mixin navSubMenu
-	ul.menu_list
-		li
-			a(href="#") item_1
-			ul
-				li
-					a(href="#") sub_item_1
-				li
-					a(href="#") sub_item_2
-					ul
-						li
-							a(href="#") sub_2_item_1
-						li
-							a(href="#") sub_2_item_2
-							ul
-								li
-									a(href="#") sub_3_item_1
-								li
-									a(href="#") sub_3_item_2
-								li
-									a(href="#") sub_3_item_3
-						li
-							a(href="#") sub_2_item_3
-				li
-					a(href="#") sub_item_3
-		li
-			a(href="#") item_2
-		li
-			a(href="#") item_3
+//- Menu for landing
 
-mixin rightBlockBtn
-	a.btn(href="#") Link
+- var navItems = [ {'Home': 'index.html' },{ 'Page_1': 'page_1.html' } ]
+
+mixin navLanding(activePage='Home', items=navItems)
+	if !menuTypeSubmenu
+		ul.menu
+			each item in items
+				li
+					each href, value in item
+						a(
+							href= href 
+							class=(value === activePage ? 'active' : ''))= value
+
+//- --------------------------------------------------------------------------
+
+
+//- Menu width submenu
+-
+	var menuList = [
+	{
+		title: "Menu item 1",
+		link: "#",
+		showFooter: true,
+		subnav: [
+			{
+				title: "Submenu item 1",
+				link: "#",
+				showFooter: true,
+			},
+			{
+				title: "Submenu item 2",
+				link: "#",
+				showFooter: true,
+			}
+		]
+	}, {
+		title: "Menu item 2",
+		link: "areas.html",
+		showFooter: false,
+		subnav: [
+			{
+				title: "Submenu item 1",
+				link: "#",
+				showFooter: true,
+			},
+			{
+				title: "Submenu item 2",
+				link: "#",
+				showFooter: true,
+			},
+		]
+	}, {
+		title: "Menu item 3",
+		link: "#",
+		showFooter: true,
+		subnav: [
+			//- {
+			//- 	title: "Submenu item 1",
+			//- 	link: "#",
+			//- 	showFooter: true,
+			//- },
+			//- {
+			//- 	title: "Submenu item  2",
+			//- 	link: "#",
+			//- 	showFooter: true,
+			//- },
+		]
+	}
+	];
+
+mixin navSubMenu(menuSelected)
+	if menuTypeSubmenu
+		ul.menu
+			each menuItem in menuList
+				+menu_item(menuItem, menuSelected)
+
+mixin menu_item(menuItem, menuSelected)
+	if menuTypeSubmenu
+		li.menu__item(
+			class = menuSelected === menuItem.title 
+				? "active" 
+				: "" 
+			class = menuItem.subnav.length > 0 
+				? "has-submenu"
+				: ""
+			)
+			a.menu__link(href = menuItem.link)= menuItem.title
+				if menuItem.subnav.length > 0
+					ul.submenu
+						each submenuItem in menuItem.subnav
+							li.submenu__item
+								a.submenu__link(href=submenuItem.link)=submenuItem.title
+//- --------------------------------------------------------------------------
+
+//- Footer nav
+mixin footerNav(activePage='Home', items=navItems)
+	ul.footer__nav
+		//- Footer menu for nav width submenu
+		if menuTypeSubmenu
+			each menuItem in menuList
+				if menuItem.showFooter === true
+					li.footer__nav-item
+						a(href=menuItem.link)=menuItem.title
+				each subnav in menuItem.subnav
+					if subnav.showFooter === true
+						li.footer__nav-item
+							a(href=subnav.link)=subnav.title
+		//- Footer menu for landing
+		if !menuTypeSubmenu
+			each item in items
+				li
+					each href, value in item
+						a(
+							href= href 
+							class=(value === activePage ? 'active' : ''))= value
+//- --------------------------------------------------------------------------
 
 mixin navbar
 	nav.header__nav
-		+nav
+		+navSubMenu(menuSelected)
+		+navLanding(activePage)
 		block

@@ -1,0 +1,16 @@
+-
+	var telephones = [
+		{
+			number: "+3 80 500 10 10",
+		},
+		{
+			number: "+3 80 500 50 50",
+		},
+	]
+
+mixin telephones
+	.footer__tel
+		ul
+			each item in telephones
+				li 
+					a(href=`tel:${item.number.replace(/\s+/g, '')}`)=item.number

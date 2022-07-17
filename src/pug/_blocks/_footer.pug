@@ -1,7 +1,37 @@
 mixin footer
 	footer.footer
 		.container
-			h2 Footer
+		.footer__wrapper 
 
-	script(src="js/libs/jquery-3.6.0.min.js") 
+			//- Other logo
+			//- - var logoLinkImg = "https://art.nativescript-vue.org/sponsors/progress.png"
+			//- - var logoLinkImgMobile = "https://nativescripting.com/img/logo_full.svg"
+
+			+logo(logoLinkImg)
+			//- +logoMobile(logoLinkImgMobile)
+			+footerNav
+			+telephones
+			+mail
+			+socials
+
+
+	script(src="js/libs/jquery-3.6.0.min.js")
+
+	//- script(src="js/libs/aos.js")
+
+	//- script(src="js/libs/jquery.liMarquee.js")
+	
+	//- script(src="js/libs/jquery.scrollbar.min.js")
+
+	//- script(src="js/libs/lottie.min.js")
+
+	//- script(src="js/libs/jquery.magnific-popup.min.js")
+
+	//- script(src="js/libs/parallax.min.js")
+
+	//- script(src="js/libs/select2.min.js")
+	//- script(src="js/libs/select2.full.js")
+
+	//- script(src="js/libs/swiper-bundle.min.js")
+
 	script(src="js/main.js") 

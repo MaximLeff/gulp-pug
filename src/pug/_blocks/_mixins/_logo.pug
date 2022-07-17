@@ -1,0 +1,12 @@
+//- - var logoLinkImg = "https://art.nativescript-vue.org/sponsors/kiwiirc.png"
+//- - var logoLinkImgMobile = "https://nativescripting.com/img/logo_full.svg"
+
+mixin logo(logoLinkImg)
+	.footer__logo
+		a(href="/") 
+			img(src=logoLinkImg, alt="Logo")
+
+mixin logoMobile(logoLinkImgMobile)
+	.footer__logo.footer__logo-mobile
+		a.logo__mobile(href="/") 
+			img(src=logoLinkImg, alt="Logo")

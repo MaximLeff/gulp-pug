@@ -1,3 +1,10 @@
 $desktop: 1280px;
 $tablet: 768px;
 $mobile: 425px;
+
+* {
+	--color-first: red;
+
+	--anim2: 0.2s ease-in-out;
+	--anim1: 0.1s ease;
+}

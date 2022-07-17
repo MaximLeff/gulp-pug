@@ -1,0 +1,31 @@
+- 
+	var socialsLink = [
+		{
+			title: "Facebook",
+			link: "Facebook_link",
+			img: "img/social_icons/icon_facebook.svg",
+		},
+		{
+			title: "Telegram",
+			link: "Telegram_link",
+			img: "img/social_icons/icon_telegram.svg"
+		},
+		{
+			title: "Viber",
+			link: "Viber_link",
+			img: "img/social_icons/icon_viber.svg"
+		},
+		{
+			title: "Whatsapp",
+			link: "Whatsapp_link",
+			img: "img/social_icons/icon_whatsapp.svg"
+		},
+	]
+
+mixin socials
+	.footer__social.social
+		ul.socials__list
+			each item in socialsLink
+				li
+					a(href=item.link target="_blank")=item.title
+						img(src=item.img, alt=item.title)

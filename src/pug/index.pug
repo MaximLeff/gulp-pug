@@ -4,20 +4,21 @@ doctype html
 html(lang="en")
 	+head
 	body
-		+header
-			//- +navbar
-				//- +nav
-				//- +navSubMenu
+	
+		- var menuSelected = 'Menu item 1';
+		- var activePage = 'Page_1';
+		
+		+header(menuSelected, activePage)
 		main.wrapper.home_page
 			//- секции страницы -------------
 			.container
 				h1 Home Page
-				//- include _index/_index-section_1
-				//- include _index/_index-section_2
-				//- include _index/_index-section_3
-				//- include _index/_index-section_4
-				//- include _index/_index-section_5
-				//- include _index/_index-section_6
+				//- include _index/section_1
+				//- include _index/section_2
+				//- include _index/section_3
+				//- include _index/section_4
+				//- include _index/section_5
+				//- include _index/section_6
 				//- -----------------------------
 
 		//- footer

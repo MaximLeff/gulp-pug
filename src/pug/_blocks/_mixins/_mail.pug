@@ -1,0 +1,12 @@
+-
+	var mails = [
+		{
+			title: "test@gmail.com"
+		},
+	]
+
+mixin mail
+	.footer__mail
+		ul
+			each item in mails
+				a(href=`mailto:${item.title}`)=item.title
