@@ -19,7 +19,7 @@ const path = {
 		pug: [source_folder + '/pug/*.pug', '!' + source_folder + '/_*.pug'],
 		css: source_folder + '/scss/main.scss',
 		js: source_folder + '/js/main.js',
-		img: source_folder + '/img/**/*.{jpg,png,svg,webp}',
+		img: source_folder + '/img/**/*.{jpg,JPG,png,svg,webp}',
 		fonts: source_folder + '/fonts/*.ttf',
 	},
 	watch: {
@@ -27,7 +27,7 @@ const path = {
 		pug: source_folder + '/pug/**/*.pug',
 		css: source_folder + '/scss/**/*.scss',
 		js: source_folder + '/js/**/*.js',
-		img: source_folder + '/img/**/*.{jpg,png,svg,webp}',
+		img: source_folder + '/img/**/*.{jpg,JPG,png,svg,webp}',
 	},
 	clean: './' + project_folder + '/',
 	clean: ['dist/css/', 'dist/js/', 'dist/fonts/'],
@@ -178,7 +178,6 @@ function cssLibsMove() {
 		.pipe(dest(path.build.cssLibs))
 }
 
-
 // Обработка изображений
 function images() {
 	return src(path.src.img)
@@ -191,6 +190,7 @@ function images() {
 				optimizationLevel: 1 // 0 to 7
 			})
 		)
+		.pipe(webp())
 		.pipe(dest(path.build.img))
 }
 
