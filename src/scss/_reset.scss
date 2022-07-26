@@ -29,6 +29,17 @@
 	user-select: none;           /* Non-prefixed version, currently not supported by any browser */
  }
 
+/* ios */
+input, 
+input:before, 
+input:after {
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
+
 html,
 body,
 div,
@@ -130,6 +141,8 @@ input {
 	-webkit-appearance: none;
 	border-radius: 0;
 }
+
+
 
 a {
 	color: unset;
