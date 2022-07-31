@@ -1,0 +1,30 @@
+@mixin rightBlock {
+	@if $right_block == link {
+		border-bottom: 1px solid #000;
+	}
+
+	@if $right_block == burger {
+		display: flex;
+		flex-direction: column;
+		width: 30px;
+		height: 20px;
+
+		span {
+			border-radius: 10px;
+			width: 100%;
+			height: 3px;
+			background: #000;
+
+			&:not(:last-child) {
+				margin-bottom: 5px;
+			}
+		}
+	}
+}
+
+.btn {
+	&--link,
+	&--burger {
+		@include rightBlock;
+	}
+}

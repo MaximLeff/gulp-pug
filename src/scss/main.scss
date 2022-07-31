@@ -1,6 +1,6 @@
 @import "_reset";
 @import "_variables";
-@import "_mixins";
+@import "_allMixins";
 @import "_fonts";
 
 // doc_section
@@ -9,15 +9,18 @@
 @import "_doc_section/_header";
 @import "_doc_section/_footer";
 
+// Mixins
+@import "_doc_section/_mixins/_rightBlock";
+
 // plugins
 /* Plugins section -------------------------------- */
 
 // @import "_plugins/_";
-@import "_plugins/_aos";
-@import "_plugins/_jquery.scrollbar";
-@import "_plugins/_magnific-popup";
-@import "_plugins/_select2";
-@import "_plugins/_swiper";
+// @import "_plugins/_aos";
+// @import "_plugins/_jquery.scrollbar";
+// @import "_plugins/_magnific-popup";
+// @import "_plugins/_select2";
+// @import "_plugins/_swiper";
 
 /* End plugins ------------------------------------ */
 
