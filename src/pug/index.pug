@@ -11,15 +11,13 @@ html(lang="en")
 		+header(menuSelected, activePage)
 		main.wrapper.home_page
 			//- секции страницы -------------
-			.container
-				h1 Home Page
-				//- include _index/section_1
-				//- include _index/section_2
-				//- include _index/section_3
-				//- include _index/section_4
-				//- include _index/section_5
-				//- include _index/section_6
-				//- -----------------------------
+			include _index/_section_1
+			include _index/_section_2
+			include _index/_section_3
+			include _index/_section_4
+			include _index/_section_5
+			include _index/_section_6
+			//- -----------------------------
 
 		//- footer
 		+footer

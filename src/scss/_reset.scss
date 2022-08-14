@@ -142,9 +142,12 @@ input {
 	border-radius: 0;
 }
 
-
-
 a {
 	color: unset;
 	text-decoration: none;
+}
+
+img {
+	width: 100%;
+	object-fit: contain;
 }

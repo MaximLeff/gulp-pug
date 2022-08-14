@@ -2,8 +2,7 @@ mixin header
 	header.header
 		.container
 			.header__wrapper
-				.header__logo.logo
-					+logo(logoLinkImg)
-					//- +logoMobile(logoLinkImgMobile)
+				+logoHeader(logoHeader, logoHeaderMobile)
+				//- +logoMobile(logoLinkImgMobile)
 				+navbar
 				+rightBlock

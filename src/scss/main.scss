@@ -3,14 +3,8 @@
 @import "_allMixins";
 @import "_fonts";
 
-// doc_section
-@import "_doc_section/_layout";
-@import "_doc_section/_global";
-@import "_doc_section/_header";
-@import "_doc_section/_footer";
-
 // Mixins
-@import "_doc_section/_mixins/_rightBlock";
+@import "_allMixins";
 
 // plugins
 /* Plugins section -------------------------------- */
@@ -23,6 +17,13 @@
 // @import "_plugins/_swiper";
 
 /* End plugins ------------------------------------ */
+
+// doc_section
+@import "_doc_section/_layout";
+@import "_doc_section/_global";
+@import "_doc_section/_header";
+@import "_doc_section/_footer";
+
 
 // page_section---------------------
 

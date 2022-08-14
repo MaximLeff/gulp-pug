@@ -1,12 +1,24 @@
-//- - var logoLinkImg = "https://art.nativescript-vue.org/sponsors/kiwiirc.png"
-//- - var logoLinkImgMobile = "https://nativescripting.com/img/logo_full.svg"
+//- - var logoHeader = "https://nativescripting.com/img/logo_full.svg"
+//- - var logoHeaderMobile = "https://nativescripting.com/img/logo_full.svg"
+//- - var logoFooter = "https://nativescripting.com/img/logo_full.svg"
+//- - var logoFooterMobile = "https://nativescripting.com/img/logo_full.svg"
 
-mixin logo(logoLinkImg)
+mixin logoHeader(logoHeader, logoHeaderMobile)
+	.header__logo
+		a(href="/") 
+			img(src=logoHeader, alt="Logo")
+
+			//- mobile
+			//- picture
+			//- 	source(media="(min-width: 768px)" srcset=logoHeader)
+			//- 	img(src=logoHeaderMobile alt="Logo")
+
+mixin logoFooter(logoFooter, logoFooterMobile)
 	.footer__logo
 		a(href="/") 
-			img(src=logoLinkImg, alt="Logo")
+			img(src=logoFooter, alt="Logo")
 
-mixin logoMobile(logoLinkImgMobile)
-	.footer__logo.footer__logo-mobile
-		a.logo__mobile(href="/") 
-			img(src=logoLinkImg, alt="Logo")
+			//- mobile
+			//- picture
+			//- 	source(media="(min-width: 768px)" srcset=logoFooter)
+			//- 	img(src=logoFooterMobile alt="Logo")

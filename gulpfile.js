@@ -55,6 +55,10 @@ const ttf2woff2 = require('gulp-ttf2woff2');
 const pug = require('gulp-pug');
 const htmlbeautify = require('gulp-html-beautify');
 
+const postcss    = require('gulp-postcss')
+const sortMediaQueries = require('postcss-sort-media-queries')
+
+
 // Обновление браузера после сохранения изменений
 function browserSync() {
     browsersync.init({
@@ -98,6 +102,7 @@ function pugFiles() {
                 max_preserve_newlines: 10,
                 jslint_happy: false,
                 space_after_anon_function: false,
+                // [collapse-preserve-inline|collapse|expand|end-expand|none] ["collapse"]
                 brace_style: 'collapse',
                 keep_array_indentation: false,
                 keep_function_indentation: false,
@@ -106,9 +111,12 @@ function pugFiles() {
                 eval_code: false,
                 unescape_strings: false,
                 wrap_line_length: 0,
+                // перенос атрибутов 
+                // [auto|force|force-aligned|force-expand-multiline|aligned-multiple|preserve|preserve-aligned] ["auto"]
                 wrap_attributes: 'auto',
                 wrap_attributes_indent_size: 4,
-                end_with_newline: false,
+                end_with_newline: true,
+                
             }),
         )
         .pipe(dest(path.build.html))
@@ -152,14 +160,18 @@ function css() {
                 // compressed - всё в одну строку.
             }),
         )
-    // .pipe(group_media())
+        .pipe( postcss([ 
+            sortMediaQueries({
+                sort: 'mobile-first' // default
+              })
+        ]) )
         .pipe(
             autoprefixer({
                 overrideBrowserslist: ['last 4 versions'],
                 cascade: true,
             }),
         )
-        .pipe(dest(path.build.css))
+        // .pipe(dest(path.build.css))
     // .pipe(clean_css())
     // .pipe(
     // 	rename({
