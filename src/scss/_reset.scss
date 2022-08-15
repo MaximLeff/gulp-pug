@@ -32,7 +32,8 @@
 /* ios */
 input, 
 input:before, 
-input:after {
+input:after,
+textarea {
   -webkit-user-select: initial;
   -khtml-user-select: initial;
   -moz-user-select: initial;
