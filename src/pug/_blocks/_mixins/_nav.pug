@@ -86,11 +86,11 @@ mixin menu_item(menuItem, menuSelected)
 				: ""
 			)
 			a.menu__link(href = menuItem.link)= menuItem.title
-				if menuItem.subnav.length > 0
-					ul.submenu
-						each submenuItem in menuItem.subnav
-							li.submenu__item
-								a.submenu__link(href=submenuItem.link)=submenuItem.title
+			if menuItem.subnav.length > 0
+			ul.submenu
+				each submenuItem in menuItem.subnav
+					li.submenu__item
+						a.submenu__link(href=submenuItem.link)=submenuItem.title
 //- --------------------------------------------------------------------------
 
 //- Footer nav
