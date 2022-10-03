@@ -1,0 +1,11 @@
+- var breadCrumbs = [{href: '/', text: 'Главная'},{ href: '/', text: 'test' },{text: 'test' }]
+
+mixin breadCrumbs(breadCrumbs)
+	.container
+		ul.breadcrumbs
+			each item, index in breadCrumbs
+				li
+					if breadCrumbs.length === index + 1
+						span= item.text
+					else
+						a(href= item.href)= item.text

@@ -1,0 +1,24 @@
+-
+	var faq_list = [
+		{
+			title: "test",
+			descr: "Описание",
+		}, 
+		{
+			title: "test",
+			descr: "Описание",
+		}
+	];
+
+mixin faq_1
+	ul.accordion
+		each menuItem in faq_list
+			li.accordion__item
+				.accordion__top
+					span.accordion__title !{menuItem.title}
+				
+				.accordion__content
+					p !{menuItem.descr}
+				.accordion__content-img
+					img(src="img/faq_clock.webp", alt="Clock")
+				span.accordion__btn
