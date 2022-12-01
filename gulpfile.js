@@ -47,6 +47,7 @@ const rename = require('gulp-rename');
 const uglify = require('gulp-uglify-es').default;
 const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
+const svgo = require('gulp-svgo');
 // const webphtml = require('gulp-webp-html');
 const sourcemaps = require('gulp-sourcemaps');
 const newer = require('gulp-newer');
@@ -55,7 +56,7 @@ const ttf2woff2 = require('gulp-ttf2woff2');
 const pug = require('gulp-pug');
 const htmlbeautify = require('gulp-html-beautify');
 
-const postcss    = require('gulp-postcss')
+const postcss = require('gulp-postcss')
 const sortMediaQueries = require('postcss-sort-media-queries')
 
 
@@ -78,7 +79,7 @@ function browserSync() {
 function html() {
     return src(path.src.html)
         .pipe(fileinclude())
-    // .pipe(webphtml())
+        // .pipe(webphtml())
         .pipe(dest(path.build.html))
         .pipe(browsersync.stream());
 }
@@ -116,7 +117,7 @@ function pugFiles() {
                 wrap_attributes: 'auto',
                 wrap_attributes_indent_size: 4,
                 end_with_newline: true,
-                
+
             }),
         )
         .pipe(dest(path.build.html))
@@ -128,14 +129,14 @@ function js() {
     return src(path.src.js)
         .pipe(fileinclude())
         .pipe(dest(path.build.js))
-    // .pipe(
-    // 	uglify()
-    // )
-    // .pipe(
-    // 	rename({
-    // 		extname: ".min.js"
-    // 	})
-    // )
+        // .pipe(
+        // 	uglify()
+        // )
+        // .pipe(
+        // 	rename({
+        // 		extname: ".min.js"
+        // 	})
+        // )
         .pipe(dest(path.build.js))
         .pipe(browsersync.stream());
 }
@@ -160,11 +161,11 @@ function css() {
                 // compressed - всё в одну строку.
             }),
         )
-        .pipe( postcss([ 
+        .pipe(postcss([
             sortMediaQueries({
-                sort: 'mobile-first' // default
-              })
-        ]) )
+                sort: 'mobile-first', // default
+            }),
+        ]))
         .pipe(
             autoprefixer({
                 overrideBrowserslist: ['last 4 versions'],
@@ -172,12 +173,12 @@ function css() {
             }),
         )
         // .pipe(dest(path.build.css))
-    // .pipe(clean_css())
-    // .pipe(
-    // 	rename({
-    // 		extname: ".min.css"
-    // 	})
-    // )
+        // .pipe(clean_css())
+        // .pipe(
+        // 	rename({
+        // 		extname: ".min.css"
+        // 	})
+        // )
         .pipe(sourcemaps.write('.'))
         .pipe(dest(path.build.css))
         .pipe(browsersync.stream());
@@ -189,7 +190,7 @@ function cssLibsMove() {
 }
 
 // Обработка изображений
-function images() {
+function imagesWebp() {
     return src(path.src.img)
         .pipe(newer('dist/img/'))
         .pipe(
@@ -201,6 +202,25 @@ function images() {
             }),
         )
         .pipe(webp())
+        .pipe(dest(path.build.img));
+}
+
+function imagesSvg() {
+    return src(path.src.img)
+        .pipe(newer('dist/img/*.svg'))
+        .pipe(svgo({
+            plugins: [
+                { cleanupIDs: false },
+                { collapseGroups: false },
+
+                // { mergePaths: false },
+                // { moveElemsAttrsToGroup: false },
+                // { moveGroupAttrsToElems: false },
+                // { removeUselessStrokeAndFill: false },
+
+                { removeViewBox: false },
+            ],
+        }))
         .pipe(dest(path.build.img));
 }
 
@@ -220,7 +240,8 @@ function watchFiles() {
     gulp.watch([path.watch.pug], pugFiles);
     gulp.watch([path.watch.css], css);
     gulp.watch([path.watch.js], js);
-    gulp.watch([path.watch.img], images);
+    gulp.watch([path.watch.img], imagesWebp);
+    gulp.watch([path.watch.img], imagesSvg);
 }
 
 // Чистка папки dist
@@ -238,7 +259,8 @@ const build = gulp.series(clean, gulp.parallel(
     css,
     html,
     pugFiles,
-    images,
+    imagesWebp,
+    imagesSvg,
     fonts,
     cssLibsMove,
     jsLibsMove,
@@ -247,7 +269,8 @@ const build = gulp.series(clean, gulp.parallel(
 const watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.fonts = fonts;
-exports.images = images;
+exports.imagesWebp = imagesWebp;
+exports.imagesSvg = imagesSvg;
 exports.js = js;
 exports.jsMove = jsLibsMove;
 exports.css = css;
