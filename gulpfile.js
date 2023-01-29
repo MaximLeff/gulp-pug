@@ -1,5 +1,7 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable camelcase */
 /* eslint-disable no-tabs */
+
 // Названия папок
 const project_folder = 'dist';
 const source_folder = 'src';
@@ -7,31 +9,31 @@ const source_folder = 'src';
 // Пути к файлам и папкам
 const path = {
     build: {
-        html: project_folder + '/',
-        css: project_folder + '/css/',
-        cssLibs: project_folder + '/css/libs',
-        js: project_folder + '/js/',
-        jsLibs: project_folder + '/js/libs',
-        img: project_folder + '/img/',
-        fonts: project_folder + '/fonts/',
+        html: `${project_folder}/`,
+        css: `${project_folder}/css/`,
+        cssLibs: `${project_folder}/css/libs`,
+        js: `${project_folder}/js/`,
+        jsLibs: `${project_folder}/js/libs`,
+        img: `${project_folder}/img/`,
+        fonts: `${project_folder}/fonts/`,
     },
     src: {
-        html: [source_folder + '/html/*.html', '!' + source_folder + '/_*.html'],
-        pug: [source_folder + '/pug/*.pug', '!' + source_folder + '/_*.pug'],
-        css: source_folder + '/scss/main.scss',
-        js: source_folder + '/js/main.js',
-        img: source_folder + '/img/**/*.{jpg,JPG,png,PNG,svg,webp}',
-        fonts: source_folder + '/fonts/*.ttf',
+        html: [`${source_folder}/html/*.html`, `!${source_folder}/_*.html`],
+        pug: [`${source_folder}/pug/*.pug`, `!${source_folder}/_*.pug`],
+        css: `${source_folder}/scss/main.scss`,
+        js: `${source_folder}/js/main.js`,
+        img: `${source_folder}/img/**/*.{jpg,JPG,png,PNG,svg,webp}`,
+        fonts: `${source_folder}/fonts/*.ttf`,
     },
     watch: {
-        html: source_folder + '/html/**/*.html',
-        pug: source_folder + '/pug/**/*.pug',
-        css: source_folder + '/scss/**/*.scss',
-        js: source_folder + '/js/**/*.js',
-        img: source_folder + '/img/**/*.{jpg,JPG,png,PNG,svg,webp}',
+        html: `${source_folder}/html/**/*.html`,
+        pug: `${source_folder}/pug/**/*.pug`,
+        css: `${source_folder}/scss/**/*.scss`,
+        js: `${source_folder}/js/**/*.js`,
+        img: `${source_folder}/img/**/*.{jpg,JPG,png,PNG,svg,webp}`,
     },
-    clean: './' + project_folder + '/',
-    clean: ['dist/css/', 'dist/js/', 'dist/fonts/'],
+    clean: `./${project_folder}/`,
+    clean: ['dist/css/', 'dist/js/', 'dist/fonts/', 'dist/img/'],
 };
 
 const { src, dest } = require('gulp');
@@ -45,7 +47,6 @@ const group_media = require('gulp-group-css-media-queries');
 const clean_css = require('gulp-clean-css');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify-es').default;
-const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
 const svgo = require('gulp-svgo');
 // const webphtml = require('gulp-webp-html');
@@ -56,9 +57,8 @@ const ttf2woff2 = require('gulp-ttf2woff2');
 const pug = require('gulp-pug');
 const htmlbeautify = require('gulp-html-beautify');
 
-const postcss = require('gulp-postcss')
-const sortMediaQueries = require('postcss-sort-media-queries')
-
+const postcss = require('gulp-postcss');
+const sortMediaQueries = require('postcss-sort-media-queries');
 
 // Обновление браузера после сохранения изменений
 function browserSync() {
@@ -112,7 +112,7 @@ function pugFiles() {
                 eval_code: false,
                 unescape_strings: false,
                 wrap_line_length: 0,
-                // перенос атрибутов 
+                // перенос атрибутов
                 // [auto|force|force-aligned|force-expand-multiline|aligned-multiple|preserve|preserve-aligned] ["auto"]
                 wrap_attributes: 'auto',
                 wrap_attributes_indent_size: 4,
@@ -193,15 +193,12 @@ function cssLibsMove() {
 function imagesWebp() {
     return src(path.src.img)
         .pipe(newer('dist/img/'))
-        .pipe(
-            imagemin({
-                progressive: true,
-                svgoPlugins: [{ removeViewBox: false }],
-                interlaced: true,
-                optimizationLevel: 1, // 0 to 7
-            }),
-        )
-        .pipe(webp())
+        .pipe(webp({
+            // Default - 75
+            quality: 85,
+            // Default - 4 | Compress method 0 (fastest) and 6 (slowest).
+            method: 5,
+        }))
         .pipe(dest(path.build.img));
 }
 
