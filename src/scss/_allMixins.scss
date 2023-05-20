@@ -2,25 +2,6 @@
 // Тип кнопки link | burger
 $right_block: burger;
 
-// @use "sass:math";
-
-// // TO %
-// @function prc($pxOne, $pxTwo) {
-// 	$result: math.div($pxOne, $pxTwo) * 100%;
-// 	@return $result;
-// }
-
-// // TO REM
-// @function rem($px) {
-// 	$result: math.div($px, 16) + rem;
-// 	@return $result;
-// }
-
-// // TO EM
-// @function em($px) {
-// 	$result: math.div($px, 16) + em;
-// 	@return $result;
-// }
 
 // $name - имя шрифтового семейства;
 // $file - имя файла;
@@ -40,4 +21,4 @@ $right_block: burger;
 
 // @include font-face("DMSans", "DMSans-Bold", 900);
 
-@import "_doc_section/_mixins/_rightBlock"
+@import "_doc_section/_mixins/_rightBlock";

@@ -2,11 +2,7 @@
 @import "_variables";
 @import "_fonts";
 
-// Mixins
-@import "_allMixins";
-
-// plugins
-/* Plugins section -------------------------------- */
+// Plugins section --------------------------------
 
 // @import "_plugins/_";
 // @import "_plugins/_aos";
@@ -15,7 +11,10 @@
 // @import "_plugins/_select2";
 // @import "_plugins/_swiper";
 
-/* End plugins ------------------------------------ */
+// End plugins ------------------------------------
+
+// Mixins
+@import "_allMixins";
 
 // doc_section
 @import "_doc_section/_layout";
