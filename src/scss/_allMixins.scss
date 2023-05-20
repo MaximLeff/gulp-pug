@@ -1,8 +1,3 @@
-// Шапка, правый крайний блок
-// Тип кнопки link | burger
-$right_block: burger;
-
-
 // $name - имя шрифтового семейства;
 // $file - имя файла;
 // $weight - жирность шрифта (по-умолчанию установлено значение 400, но если мы передадим параметр, то значение по-умолчанию будет проигнорировано)
@@ -20,5 +15,3 @@ $right_block: burger;
 }
 
 // @include font-face("DMSans", "DMSans-Bold", 900);
-
-@import "_doc_section/_mixins/_rightBlock";

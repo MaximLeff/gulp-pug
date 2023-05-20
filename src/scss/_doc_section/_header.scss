@@ -10,6 +10,24 @@
 		flex: 1;
 		justify-content: end;
 		margin-right: 20px;
+
+		@include respond-to(tablet) {
+			position: fixed;
+			right: -100%;
+			top: 0;
+			bottom: 0;
+			z-index: 5;
+			flex: unset;
+			flex-direction: column;
+			justify-content: unset;
+			margin: unset;
+			padding: 50px 30px;
+			background: #fff;
+			transition: var(--anim4);
+			&.js-open {
+				right: 0;
+			}
+		}
 	}
 }
 
@@ -33,6 +51,11 @@
 				visibility: visible;
 			}
 		}
+	}
+
+	@include respond-to(tablet) {
+		flex: unset;
+		flex-direction: column;
 	}
 }
 

@@ -68,7 +68,7 @@ function browserSync() {
 		},
 		// online: true,
 		open: false, // Автоматически открывать браузер
-		// browser: "google chrome", // запуск браузера по умолчанию
+		browser: "chrome", // запуск браузера по умолчанию
 		notify: true, // Уведомления при обновлении браузера
 		scrollProportionally: true, // Синхронная прокрутка
 		// scrollThrottle: 100,

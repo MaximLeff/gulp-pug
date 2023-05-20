@@ -2,6 +2,22 @@
 	&__wrapper {
 		display: grid;
 		grid-template-areas: "logo nav tel mail socials";
+
+		@include respond-to(tablet) {
+			grid-template-areas:
+				"logo nav tel"
+				"logo nav mail"
+				"logo nav socials";
+		}
+
+		@include respond-to(mobi) {
+			grid-template-areas:
+				"logo"
+				"nav"
+				"tel"
+				"mail"
+				"socials";
+		}
 	}
 
 	&__logo {
