@@ -240,24 +240,24 @@ function imagesWebp() {
 		.pipe(dest(path.build.img));
 }
 
-function imagesSvg() {
-	return src(path.src.imgSvg)
-		.pipe(newer('dist/img/'))
-		.pipe(svgo({
-			plugins: [
-				{ cleanupIDs: false },
-				{ collapseGroups: false },
+// function imagesSvg() {
+// 	return src(path.src.imgSvg)
+// 		.pipe(newer('dist/img/'))
+// 		.pipe(svgo({
+// 			plugins: [
+// 				{ cleanupIDs: false },
+// 				{ collapseGroups: false },
 
-				// { mergePaths: false },
-				// { moveElemsAttrsToGroup: false },
-				// { moveGroupAttrsToElems: false },
-				// { removeUselessStrokeAndFill: false },
+// 				// { mergePaths: false },
+// 				// { moveElemsAttrsToGroup: false },
+// 				// { moveGroupAttrsToElems: false },
+// 				// { removeUselessStrokeAndFill: false },
 
-				{ removeViewBox: false },
-			],
-		}))
-		.pipe(dest(path.build.img));
-}
+// 				{ removeViewBox: false },
+// 			],
+// 		}))
+// 		.pipe(dest(path.build.img));
+// }
 
 // Конвертация шрифтов
 function fonts() {
@@ -275,7 +275,7 @@ function watchFiles() {
 	gulp.watch([path.watch.pug], pugFiles);
 	gulp.watch([path.watch.css], css);
 	gulp.watch([path.watch.js], js);
-	gulp.watch([path.watch.img], imagesSvg);
+	// gulp.watch([path.watch.img], imagesSvg);
 	gulp.watch([path.watch.img], imagesWebp);
 }
 
@@ -294,7 +294,7 @@ const build = gulp.series(clean, gulp.parallel(
 	css,
 	html,
 	pugFiles,
-	imagesSvg,
+	// imagesSvg,
 	imagesWebp,
 	fonts,
 	cssLibsMove,
@@ -306,7 +306,7 @@ const prod = gulp.series(clean, gulp.parallel(
 	cssProd,
 	html,
 	pugFiles,
-	imagesSvg,
+	// imagesSvg,
 	imagesWebp,
 	fonts,
 	cssLibsMove,
@@ -316,7 +316,7 @@ const prod = gulp.series(clean, gulp.parallel(
 const watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.fonts = fonts;
-exports.imagesSvg = imagesSvg;
+// exports.imagesSvg = imagesSvg;
 exports.imagesWebp = imagesWebp;
 exports.js = js;
 exports.jsMove = jsLibsMove;
