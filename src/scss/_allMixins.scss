@@ -10,7 +10,9 @@
 			url("../fonts/#{$file}.woff") format("woff");
 		font-weight: $weight;
 		font-style: $style;
-		font-display: swap;
+		// font-display: swap;
+		// Ждет загрузку шрифов и только после отображает
+		font-display: block;
 	}
 }
 
