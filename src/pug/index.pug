@@ -1,5 +1,5 @@
 //- include _имя_папки/_имя_страницы-имя_секции
-include _blocks/_all_blocks
+include _components/_blocks/_all_blocks
 doctype html
 html(lang="en")
 	+head
@@ -11,12 +11,7 @@ html(lang="en")
 		+header(menuSelected, activePage)
 		main.wrapper.home_page
 			//- секции страницы -------------
-			include _index/_section_1
-			include _index/_section_2
-			include _index/_section_3
-			include _index/_section_4
-			include _index/_section_5
-			include _index/_section_6
+			include _components/comp_1.pug
 			//- -----------------------------
 
 		//- footer

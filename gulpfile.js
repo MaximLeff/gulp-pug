@@ -19,7 +19,7 @@ const path = {
 	},
 	src: {
 		html: [`${source_folder}/html/*.html`, `!${source_folder}/_*.html`],
-		pug: [`${source_folder}/pug/*.pug`, `!${source_folder}/_*.pug`],
+		pug: [`${source_folder}/pug/**/*.pug`, `!${source_folder}/pug/_components/**/*.pug`],
 		css: `${source_folder}/scss/main.scss`,
 		js: `${source_folder}/js/main.js`,
 		img: `${source_folder}/img/**/*.{jpg,JPG,png,PNG,svg,webp}`,
@@ -75,14 +75,6 @@ function browserSync() {
 	});
 }
 
-// Обработка HTML
-function html() {
-	return src(path.src.html)
-		.pipe(fileinclude())
-		.pipe(dest(path.build.html))
-		.pipe(browsersync.stream());
-}
-
 // Обработка PUG
 function pugFiles() {
 	return src(path.src.pug)
@@ -118,7 +110,8 @@ function pugFiles() {
 				wrap_attributes: 'auto',
 				wrap_attributes_indent_size: 4,
 				end_with_newline: true,
-
+				// basedir: project_folder.join(__dirname, 'app', 'pug'),
+				// basedir: __dirname,
 			}),
 		)
 		.pipe(dest(path.build.html))
@@ -240,25 +233,6 @@ function imagesWebp() {
 		.pipe(dest(path.build.img));
 }
 
-// function imagesSvg() {
-// 	return src(path.src.imgSvg)
-// 		.pipe(newer('dist/img/'))
-// 		.pipe(svgo({
-// 			plugins: [
-// 				{ cleanupIDs: false },
-// 				{ collapseGroups: false },
-
-// 				// { mergePaths: false },
-// 				// { moveElemsAttrsToGroup: false },
-// 				// { moveGroupAttrsToElems: false },
-// 				// { removeUselessStrokeAndFill: false },
-
-// 				{ removeViewBox: false },
-// 			],
-// 		}))
-// 		.pipe(dest(path.build.img));
-// }
-
 // Конвертация шрифтов
 function fonts() {
 	src(path.src.fonts)
@@ -271,7 +245,7 @@ function fonts() {
 
 // Слушать файлы
 function watchFiles() {
-	gulp.watch([path.watch.html], html);
+	// gulp.watch([path.watch.html], html);
 	gulp.watch([path.watch.pug], pugFiles);
 	gulp.watch([path.watch.css], css);
 	gulp.watch([path.watch.js], js);
@@ -292,9 +266,7 @@ function ready() {
 const build = gulp.series(clean, gulp.parallel(
 	js,
 	css,
-	html,
 	pugFiles,
-	// imagesSvg,
 	imagesWebp,
 	fonts,
 	cssLibsMove,
@@ -304,9 +276,7 @@ const build = gulp.series(clean, gulp.parallel(
 const prod = gulp.series(clean, gulp.parallel(
 	js,
 	cssProd,
-	html,
 	pugFiles,
-	// imagesSvg,
 	imagesWebp,
 	fonts,
 	cssLibsMove,
@@ -316,13 +286,11 @@ const prod = gulp.series(clean, gulp.parallel(
 const watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.fonts = fonts;
-// exports.imagesSvg = imagesSvg;
 exports.imagesWebp = imagesWebp;
 exports.js = js;
 exports.jsMove = jsLibsMove;
 exports.css = css;
 exports.cssMove = cssLibsMove;
-exports.html = html;
 exports.pugFiles = pug;
 exports.build = build;
 exports.watch = watch;
